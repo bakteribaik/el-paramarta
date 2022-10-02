@@ -1,0 +1,105 @@
+body{
+    background-color: rgb(247, 249, 255);
+    margin: 0;
+}
+
+.navbar{
+    padding: 20px 20px 20px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color: rgb(46, 41, 72);
+    padding-right: 20px;
+}
+a:hover{
+    font-weight: bold;
+}
+.logo{
+    height: 50px;
+    padding-right: 20px;
+}
+table{
+    padding: 40px 40px 40px 40px;
+    margin: 0 auto;
+}
+.welcome-text{
+    color: rgb(46, 41, 72);
+    font-family: 'Poppins-Bold';
+    font-size: 40pt;
+}
+.welcome-text2{
+    margin-top: -50px;
+    color: rgb(46, 41, 72);
+    font-size: 30pt;
+}
+.welcome-image{
+    margin-left: -360px;
+    height: 600px;
+}
+.login-container{
+    background-color: white;
+    height: 400px;
+    width: 450px;
+    border-radius: 30px;
+    margin-left: 60px;
+    padding: 40px;
+    text-align: center;
+}
+.login-welcome{
+    font-size: 17pt;
+    text-align: center;
+}
+form{
+    margin-top: 20px;
+}
+#forminput{
+    height: 50px;
+    width: 400px;
+    padding-left: 20px;
+    border: 0px;
+    background-color: rgb(247, 249, 255);
+    border-radius: 20px;
+    border-color: rgb(247, 249, 255);
+}
+#forminputPassword{
+    height: 50px;
+    width: 400px;
+    padding-left: 20px;
+    border: 0px;
+    background-color: rgb(247, 249, 255);
+    border-radius: 20px;
+    border-color: rgb(247, 249, 255);
+}
+#forminput:hover{
+    background-color: rgb(46, 41, 72);
+    color: white;
+}
+#forminputPassword:hover{
+    background-color: rgb(46, 41, 72);
+    color: white;
+}
+.rememberme-wrapper{
+    font-size: 8pt;
+    text-align: left;
+    padding-left: 15px;
+}
+#submitbutton{
+    margin-top: 50px;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 15px;
+    background-color: aquamarine;
+}
+#submitbutton:hover{
+    background-color: rgb(46, 41, 72);
+    color: white;
+}
+.lupapassword{
+    font-size: 10pt;
+    margin-left: 20px;
+    text-align: center;
+}
