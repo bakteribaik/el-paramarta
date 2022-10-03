@@ -1,0 +1,96 @@
+
+body{
+    background-color: rgb(240, 240, 240);
+}
+.sidebar{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgb(240, 240, 240);
+    overflow-x: hidden;
+}
+.sidebar-title{
+    font-weight: bold;
+    font-size: 18pt;
+    font-family: 'Poppins-Bold';
+    color: rgb(46, 41, 72);
+}
+.sidebar-subtitle{
+    margin-top: -10px;
+    font-size: 10pt;
+    color: rgb(194, 39, 124);
+}
+a{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    display: block;
+    border-radius: 18px;
+    text-decoration: none;
+    text-align: center;
+    color: grey;
+    filter: drop-shadow(0px 10px 5px #d6d6d6);
+}
+a:hover{
+    background-color: rgb(69, 61, 110);
+    color: white;
+}
+a.active{
+    background-color: rgb(69, 61, 110);
+    color: white;
+}
+.mapel-title-container{
+    margin-top: 30px;
+    font-family: 'Poppins-Bold';
+    font-weight: bold;
+    color: rgb(46, 41, 72);
+    margin-bottom: 10px;
+}
+.mapel-container{
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+    width: 88%;
+    border-radius: 20px;
+    overflow:hidden;
+    display:inline-block;
+    filter: drop-shadow(0px 10px 5px #d6d6d6);
+}
+.mapel-logo{
+    height: 40px;
+    width: 40px;
+    background-color: rgb(221, 105, 182);
+    border-radius: 15px;
+    float: left;
+}
+.mapel-detail-container{
+    padding-top: 3px;
+    margin-left: 50px;
+}
+.mapel-guru{
+    font-size: 10pt;
+    font-weight: bold;
+    color: rgb(83, 77, 114);
+}
+.mapel{
+    font-size: 8pt;
+    color: grey;
+}
+.mapel-container:hover{
+    background-color: rgb(83, 80, 97);
+}
+.mapel-container:hover .mapel-guru{
+    color: white;
+}
+.mapel-container:hover .mapel{
+    color: white;
+}
+.content{
+    margin-left: 250px;
+    color: rgb(69, 61, 110);
+}

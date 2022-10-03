@@ -3,7 +3,14 @@
     include 'validation/session.php';
     
     if (empty($_SESSION) == false) {
-        header("location:pages/dashboard");
+        if ($_SESSION['roles'] == "1") {
+            header("location:guru/dashboard");
+            exit();
+        }
+        if ($_SESSION['roles'] == "2") {
+            header("location:siswa/dashboard");
+            exit();
+        }
     }
 
     if (isset($_POST['login'])) {
@@ -33,7 +40,7 @@
                 $_SESSION['name'] = $row['nama_user'];
                 $_SESSION['roles'] = $row['roles'];
     
-                header('location:pages/guru');
+                header('location:guru/dashboard');
                 exit();
             }
     
@@ -42,7 +49,7 @@
                 $_SESSION['name'] = $row['nama_user'];
                 $_SESSION['roles'] = $row['roles'];
     
-                header('location:pages/dashboard');
+                header('location:siswa/dashboard');
                 exit();
             }
         }else{

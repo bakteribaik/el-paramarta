@@ -2,6 +2,9 @@
     include '../connection.php';
     include '../validation/session.php';
     include '../validation/checkSession.php';
+    if ($_SESSION['roles'] == '2') {
+        header('location:../siswa/dashboard');
+    }
 ?>  
 
 <!DOCTYPE html>
