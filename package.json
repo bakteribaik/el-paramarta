@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "chart.js": "^3.9.1",
+    "fullcalendar": "^5.11.3"
+  }
+}

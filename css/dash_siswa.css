@@ -11,7 +11,7 @@ body{
     position: fixed;
     left: 0;
     top: 0;
-    background-color: rgb(240, 240, 240);
+    background-color: transparent;
     overflow-x: hidden;
 }
 .sidebar-title{
@@ -25,23 +25,39 @@ body{
     font-size: 10pt;
     color: rgb(194, 39, 124);
 }
-a{
-    margin-top: 20px;
-    padding: 10px;
-    background-color: white;
-    display: block;
-    border-radius: 18px;
-    text-decoration: none;
-    text-align: center;
-    color: grey;
-    filter: drop-shadow(0px 10px 5px #d6d6d6);
+.sidebar-menu-container{
+    margin-top: 30px;
 }
-a:hover{
-    background-color: rgb(69, 61, 110);
+.menu-container{
+    margin-bottom: 10px;
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+}
+.menu-logo-container{
+    width: 20%;
+}
+.menu-logo{
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    color: grey;
+}
+.menu-title{
+    width: 80%;
+    color: grey;
+}
+a{
+    text-decoration: none;
+    color: rgb(69, 61, 110);
+}
+.menu-container:hover{
+    background-color: grey;
+}
+.menu-container:hover .menu-logo{
     color: white;
 }
-a.active{
-    background-color: rgb(69, 61, 110);
+.menu-container:hover a{
     color: white;
 }
 .mapel-title-container{
@@ -51,6 +67,10 @@ a.active{
     color: rgb(46, 41, 72);
     margin-bottom: 10px;
 }
+.mapel-title{
+    font-weight: bold;
+    font-size: 15pt;
+}
 .mapel-container{
     margin-top: 10px;
     background-color: white;
@@ -59,7 +79,6 @@ a.active{
     border-radius: 20px;
     overflow:hidden;
     display:inline-block;
-    filter: drop-shadow(0px 10px 5px #d6d6d6);
 }
 .mapel-logo{
     height: 40px;
@@ -72,25 +91,76 @@ a.active{
     padding-top: 3px;
     margin-left: 50px;
 }
-.mapel-guru{
+.nama-mapel{
     font-size: 10pt;
     font-weight: bold;
-    color: rgb(83, 77, 114);
+    color: rgb(69, 61, 110);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.mapel{
+.nama-mapel:hover{
+    white-space: unset;
+    text-overflow: unset;
+}
+.mapel-guru{
     font-size: 8pt;
     color: grey;
 }
-.mapel-container:hover{
-    background-color: rgb(83, 80, 97);
-}
-.mapel-container:hover .mapel-guru{
-    color: white;
-}
-.mapel-container:hover .mapel{
-    color: white;
+.content-container{
+    margin-left: 250px;
+    padding: 30px;
+    border-radius: 30px;
+    background-color: rgb(247, 249, 255);
+    height: 100vh;
+    display: flex;
 }
 .content{
-    margin-left: 250px;
+    width: 75%;
+}
+.content-kanan{
+    width: 25%;
+    padding-left: 30px;
+}
+.topbar-kanan-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.topbar-profile{
+    margin-left: 15px;
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    background-color: aquamarine;
+}
+.scrollable-container{
+    margin-top: 50px;
+}
+.daring-header{
+    font-weight: bold;
     color: rgb(69, 61, 110);
+}
+.daring-detail-container{
+    margin-top: 20px;
+}
+.nama-guru{
+    color: grey;
+}
+#calendar{
+    width: 400px;
+    height: 300px;
+}
+.online-header{
+    margin-top: 40px;
+    font-family: 'Poppins-Bold';
+    color: rgb(66, 155, 106);
+}
+.online-container{
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 11pt;
+    max-height: 500px;
 }
