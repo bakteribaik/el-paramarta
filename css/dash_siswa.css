@@ -83,7 +83,7 @@ a{
 .mapel-logo{
     height: 40px;
     width: 40px;
-    background-color: rgb(221, 105, 182);
+    /* background-color: rgb(221, 105, 182); */
     border-radius: 15px;
     float: left;
 }
@@ -141,10 +141,51 @@ a{
     font-weight: bold;
     color: rgb(69, 61, 110);
 }
+.daring-parent-container{
+    margin-top: 15px;
+    padding: 5px;
+    background-color: white;
+    display: inline-block;
+    border-radius: 15px;
+}
 .daring-detail-container{
-    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+}
+.daring-parent-container:hover{
+    background-color: rgb(207, 252, 237);
+}
+.daring-logo-container{
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+    /* background-color: rgb(255, 127, 202); */
+    margin-right: 20px;
+}
+.judul-daring{
+    font-weight: bold;
+    font-size: 14pt;
+}
+.forum-status-online{
+    font-size: 9pt;
+    padding: 2px 10px 2px 10px;
+    background-color: aquamarine;
+    border-radius: 15px;
+}
+.forum-status-offline{
+    font-size: 9pt;
+    padding: 2px 10px 2px 10px;
+    background-color: rgb(255, 58, 58);
+    border-radius: 15px;
+    color: white;
+}
+.deskripsi-daring{
+    font-size: 11pt;
+    color: grey;
 }
 .nama-guru{
+    font-size: 10pt;
     color: grey;
 }
 #calendar{

@@ -5,6 +5,15 @@
     if ($_SESSION['roles'] == '1') {
         header('location:../guru/dashboard');
     }
+
+    $randomColor = function(){
+        $colors = [
+            '#554994','#F675A8','#F29393','#FFCCB3','#A7D2CB','#F2D388','#C98474','#874C62','#F4BFBF','#FFD9C0'
+            ,'#FAF0D7','#8CC0DE','#68A7AD','#FFF89A'
+        ];
+        $rand = rand(0, count($colors) - 1);
+        return isset($colors[$rand]) ? $colors[$rand] : $colors[0];
+    }
 ?>  
 
 <!DOCTYPE html>
@@ -62,7 +71,7 @@
             while($row = mysqli_fetch_array($sql)): //nampilin semua mapel sesuai kode_jurusan
         ?>
         <div class="mapel-container">
-            <div class="mapel-logo">
+            <div class="mapel-logo" style="background-color: <?php echo $randomColor(); ?>">
             </div>
             <div class="mapel-detail-container">
                 <div class="nama-mapel">
@@ -83,14 +92,49 @@
                 <div class="daring-header">
                     Kelas online yang tersedia saat ini
                 </div>
-                <div class="daring-detail-container">
-                    <div class="nama-guru">
-                        Eko Satrio, S.Pd | Bahasa Inggris
-                    </div>
-                    <div class="daring-detail">
 
+                <?php
+                    $jurusan = $_SESSION['jurusan'];
+                    $sql = mysqli_query($conn, "SELECT * FROM db_forum WHERE kode_jurusan='$jurusan' ORDER BY status_forum='OPEN' DESC");
+                    while($row = mysqli_fetch_array($sql)):
+                ?>
+
+                <div class="daring-parent-container">
+                    <div class="daring-detail-container">
+                        <div class="daring-logo-container" style="background-color: <?php echo $randomColor(); ?>"></div>
+                        <div class="detail-container">
+                            <div class="nama-guru">
+                                <?php echo $row['nama_guru']?> | <?php echo $row['nama_mapel']?> | 04 Oktober 2022
+                            </div>
+                            <div class="daring-detail">
+                                <span class="judul-daring">
+                                    <?php
+                                        if ($row['status_forum'] == "OPEN"){
+                                    ?>
+                                        <a href="../pages/forum.php?id=<?php echo $row['id_forum']?>"><?php echo $row['judul_forum']?></a>
+                                    <?php } else { ?>
+                                        <?php echo $row['judul_forum']?>
+                                    <?php } ?>
+                                    <?php
+                                        if ($row['status_forum'] == "OPEN"){
+                                    ?>
+                                        <span class='forum-status-online'>
+                                            Open
+                                        </span>
+                                    <?php } else { ?>
+                                        <span class='forum-status-offline'>
+                                            Close
+                                        </span>
+                                    <?php } ?>
+                                </span>
+                                <br>
+                                <span class="deskripsi-daring"><?php echo $row['deskripsi_forum']?></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <?php endwhile;?>
+
             </div>
         </div>
         <div class="content-kanan">
@@ -107,17 +151,17 @@
             </div>
             <div class="online-container">
                 <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM db_siswa WHERE statuses='ONLINE' ORDER BY username ASC");    
+                    $sql = mysqli_query($conn, "SELECT * FROM db_siswa WHERE statuses='ONLINE' ORDER BY userid ASC");    
                     if (mysqli_num_rows($sql) > 0) {
                         while ($row = mysqli_fetch_array($sql)) {
-                            if ($row['username'] == $_SESSION['username']) {
+                            if ($row['userid'] == $_SESSION['userid']) {
                                 echo '👉 ';
                             }
                             echo $row['nama_user'];
                             echo ' - ';
-                            echo $row['username'];
+                            echo $row['userid'];
                             echo ' - ';
-                            echo 'XMM2';
+                            echo $row['kode_jurusan'];
                             echo '<br>';
                         }
                     }

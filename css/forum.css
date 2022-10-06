@@ -1,0 +1,100 @@
+body{
+    background-color: rgb(247, 249, 255);
+    margin: 0 auto;
+}
+
+/* page header css */
+.page-header-container{
+    height: 150px;
+    width: 100%;
+    background-color: rgb(46, 41, 72);
+    margin-bottom: 20px;
+    text-align: center;
+    /* border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px; */
+}
+.page-title{
+    padding-top: 45px;
+    font-size: 20pt;
+    font-weight: bold;
+    color: white;
+}
+.page-subtitle{
+    color: white;
+}
+/* kontent css */
+.content-container{
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.content{
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+}
+.header-container{
+    display: flex;
+    align-items: center;
+}
+.icon{
+    margin-right: 15px;
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+}
+.title{
+    font-size: 11pt;
+    font-weight: bold;
+    color: rgb(134, 134, 134);
+}
+.username{
+    color: rgb(63, 63, 63);
+    font-size: 10pt;
+}
+.pesan-container{
+    margin-left: 55px;
+    margin-top: 10px;
+}
+.button-container{
+    text-align: end;
+}
+.reply{
+    border: none;
+    padding: 5px 15px 5px 15px;
+    background-color: rgba(127, 255, 212, 0.514);
+    border-radius: 10px;
+}
+.input-pesan-container{
+    display: none;
+}
+.input-form{
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    width: 98%;
+    height: 100px;
+    background-color: rgb(231, 231, 231);
+}
+.reply:hover{
+    background-color: aquamarine;
+}
+textarea{
+    resize: none;
+}
+.kirim-container{
+    padding-left: 10px;
+    width: 90%;
+    text-align: start;
+}
+/* commentar css */
+.comment-container{
+    padding: 20px;
+    background-color: white;
+    margin-left: 40px;
+    margin-top: 10px;
+    border-radius: 15px;
+}

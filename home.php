@@ -18,27 +18,27 @@
         $username = $_POST["username"];
         $password = $_POST["password"]; 
 
-        $get = mysqli_query($conn, "SELECT username, u_pass, roles, nama_user, kode_jurusan FROM db_siswa WHERE username=$username AND 
-               u_pass=$password UNION SELECT username, u_pass, roles, nama_user, kode_jurusan FROM db_guru WHERE username=$username AND u_pass=$password LIMIT 1");
+        $get = mysqli_query($conn, "SELECT userid, u_pass, roles, nama_user, kode_jurusan FROM db_siswa WHERE userid=$username AND 
+               u_pass=$password UNION SELECT userid, u_pass, roles, nama_user, kode_jurusan FROM db_guru WHERE userid=$username AND u_pass=$password LIMIT 1");
         $row = mysqli_fetch_array($get);
 
         if (mysqli_num_rows($get) === 1) {
           
           // if (isset($row['roles'])) {  < ini gak perlu, karena sudah ada checker line 25 => if (mysqli_num_rows($get) === 1). jika line 25 lolos, ['roles'] sudah pasti ada
           // Karena value set session antara guru dan siswa sama, dijadiin 1 aja. gak perlu per masing-masing if
-          $_SESSION['username'] 	= $row['username'];
+          $_SESSION['userid'] 	    = $row['userid'];
           $_SESSION['name'] 		= $row['nama_user'];
           $_SESSION['roles'] 		= $row['roles'];
           $_SESSION['jurusan']      = $row['kode_jurusan'];
             
           if ($row['roles'] == "1") {
-            mysqli_query($conn, "UPDATE db_guru SET statuses='ONLINE' WHERE username=$username"); //update status to online when login
+            mysqli_query($conn, "UPDATE db_guru SET statuses='ONLINE' WHERE userid=$username"); //update status to online when login
             header('location:guru/dashboard');
             exit();
           }
           
           if ($row['roles'] == "2") {
-            mysqli_query($conn, "UPDATE db_siswa SET statuses='ONLINE' WHERE username=$username"); //update status to online when login
+            mysqli_query($conn, "UPDATE db_siswa SET statuses='ONLINE' WHERE userid=$username"); //update status to online when login
             header('location:siswa/dashboard');
             exit();
           }
@@ -86,7 +86,7 @@
                         Login dengan akunmu
                     </div>
                     <form action="" method="post" onsubmit="return loginCheck()">
-                        <input type="text" name="username" id="forminput" placeholder='NISN/NIP' autofocus>
+                        <input type="text" name="username" id="forminput" placeholder='NISN/NIGN' autofocus>
                         <p>
                         <input type="password" name="password" id="forminputPassword" placeholder='Password'>
                         <p>
