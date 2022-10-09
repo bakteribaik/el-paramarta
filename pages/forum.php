@@ -6,11 +6,6 @@
         header('location:../guru/dashboard');
     }
 
-    $id = $_GET['id'];
-    $sql = mysqli_query($conn, "SELECT * FROM db_postingan WHERE id_forum=$id");
-    $sqli = mysqli_query($conn, "SELECT * FROM db_forum WHERE id_forum=$id");
-    $rows = mysqli_fetch_array($sqli);
-
     $randomColor = function(){
         $colors = [
             '#554994','#F675A8','#F29393','#FFCCB3','#A7D2CB','#F2D388','#C98474','#874C62','#F4BFBF','#FFD9C0'
@@ -18,6 +13,14 @@
         ];
         $rand = rand(0, count($colors) - 1);
         return isset($colors[$rand]) ? $colors[$rand] : $colors[0];
+    };
+
+    $id_forum = $_GET['id'];
+    $query_forum = mysqli_query($conn, "SELECT * FROM db_forum WHERE id_forum=$id_forum");
+    $header = mysqli_fetch_array($query_forum);
+
+    if ($header['kode_jurusan'] != $_SESSION['jurusan']) {
+        header('Location:javascript:history.go(-1)');
     }
 ?>  
 
@@ -29,106 +32,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/forum.css">
-    <title>Forum Diskusi</title>
+    <title>Forum Diskusi <?php echo $header['kode_jurusan'];?> | <?php echo $header['judul_forum'];?></title>
 </head>
 <body>
-    <div class="page-header-container">
-        <div class="page-title">
-            <?php echo $rows['nama_mapel'] ?> | <?php echo $rows['nama_guru'] ?>
+    <div class="navbar">
+        <a href="../siswa/dashboard" class="back-btn">Dashboard</a>
+        <!-- <span class="title">| E-Learning</span> - Forum Diskusi <?php echo $header['kode_jurusan'];?> -->
+    </div>
+    <div class="page-header">
+        <div class="judul-forum">
+            <?php echo $header['judul_forum'] ?>
         </div>
-        <div class="page-subtitle">
-            kode kelas/jurusan
+        <div class="deskripsi-forum">
+            <?php echo $header['deskripsi_forum'] ?>
+        </div>
+        <div class="nama-guru">
+            <?php echo $header['nama_guru'] ?> - <?php echo $header['kode_jurusan'] ?>
         </div>
     </div>
     <?php
-        while($row = mysqli_fetch_array($sql)) :
+        $query = mysqli_query($conn, "SELECT * FROM db_postingan WHERE id_forum=$id_forum AND id_parent is null");
+        while($row  = mysqli_fetch_array($query)):
     ?>
-        <div class="content-container">
-            <?php if($row['userid'] === $_SESSION['userid']){ ?>
-                <div class="content" style="border-left: 4px solid rgb(0, 182, 206);">
-            <?php } else { ?>
-                <div class="content">
-            <?php } ?>
-                <div class="header-container">
-                    <div class="icon-container">
-                        <div class="icon" style="background-color: <?php echo $randomColor(); ?>"></div>
-                    </div>
-                    <div class="title-container">
-                        <div class="title">
-                            [Topik] <?php echo $rows['judul_forum']; ?> | <?php echo $rows['nama_guru']; ?>
+        <div class="main-post-container">
+            <div class="post-container">
+                <div class="post-header-container">
+                    <div class="avatar" style="background-color: <?php echo $randomColor(); ?>"></div>
+                    <div class="header-container">
+                        <div class="topic">
+                            <?php echo $header['judul_forum']?> - <?php echo $header['nama_guru']?>
                         </div>
-                        <div class="username">
-                            Dari: <?php echo $row['nama_user']; ?> - <?php echo $row['userid']; ?>
+                        <div class="user">
+                            Dari: <?php echo $row['nama_user']?> - <?php echo $row['userid']?>
                         </div>
                     </div>
                 </div>
-                <div class="pesan-container">
-                    <?php echo $row['pesan']; ?>
+                <div class="message-container">
+                    <?php echo $row['pesan']?>
                 </div>
-                <div class="button-container">
-                    <input type="button" value="Balas" class="reply">
-                    <div class="input-pesan-container">
-                        <textarea name="" id="" cols="30" rows="10" class="input-form" placeholder="Tuliskan Komentar.."></textarea><p>
-                        <div class="kirim-container">
-                           <button class='button-kirim'>Kirim</button> 
+                <div class="reply-button-container">
+                    <input type="button" value="balas" class="reply-btn">
+                    <div class="reply-container">
+                        <textarea placeholder="Tuliskan komentar..." name="input-pesan" id="input-pesan" cols="30" rows="10"></textarea>
+                        <div class="upload-container">
+                                <label for="upload-file" class="file-btn">Pilih File</label>
+                                <span class="file-name">Tidak ada file yang dipilih</span>
+                                <input type="file" style="visibility:hidden;" name="gambar" id="upload-file">
+                        </div>
+                        <div class="kirim-button-container">
+                            <input type="button" value="Kirim" id="kirim-btn">
                         </div>
                     </div>
                 </div>
             </div>
-                <?php
-                    $id_posting = $row['id_postingan'];
-                    $sql_comment = mysqli_query($conn, "SELECT * FROM db_comment WHERE id_postingan=$id_posting");
-                    while($comment = mysqli_fetch_array($sql_comment)):
-                ?>
-                <div class="comment-container">
-                    <div class="header-container">
-                        <div class="icon-container">
-                                <div class="icon" style="background-color: <?php echo $randomColor(); ?>"></div>
+            <?php
+                $id_post = $row['id_postingan'];
+                $query_comment = mysqli_query($conn, "SELECT * FROM db_postingan WHERE id_forum=$id_forum AND id_parent=$id_post");
+                while($row_comment = mysqli_fetch_array($query_comment)):
+            ?>
+            <!-- style="margin-left: 90px; margin-top: 10px;" -->
+                <div class="post-container" style="margin-left: 50px; margin-top: 10px;">
+                    <div class="post-header-container">
+                        <div class="avatar" style="background-color: <?php echo $randomColor(); ?>"></div>
+                        <div class="header-container">
+                            <div class="topic">
+                                <?php echo $header['judul_forum']?> - <?php echo $header['nama_guru']?>
                             </div>
-                        <div class="title-container">
-                            <div class="title">
-                                [Topik] <?php echo $rows['judul_forum']; ?> | <?php echo $rows['nama_guru']; ?>
-                            </div>
-                            <div class="username">
-                                Dari: <?php echo $comment['nama_user']; ?> - <?php echo $row['userid']; ?>
+                            <div class="user">
+                                Dari: <?php echo $row_comment['nama_user']?> - <?php echo $row_comment['userid']?>
                             </div>
                         </div>
                     </div>
-                    <div class="pesan-container">
-                        <?php echo $comment['comment']; ?>
+                    <div class="message-container">
+                        <?php echo $row_comment['pesan']?>
                     </div>
-                    <div class="button-container">
-                    <input type="button" value="Balas" class="reply">
-                    <div class="input-pesan-container">
-                        <textarea name="" id="" cols="30" rows="10" class="input-form" placeholder="Tuliskan Komentar.."></textarea><p>
-                        <div class="kirim-container">
-                           <button class='button-kirim'>Kirim</button> 
-                        </div>
+                    <div class="reply-button-container">
+                        <input type="button" value="balas" class="reply-btn">
+                        <div class="reply-container">
+                            <textarea placeholder="Tuliskan komentar..." name="input-pesan" id="input-pesan" cols="30" rows="10"></textarea>
+                            <div class="upload-container">
+                                    <label for="upload-file" class="file-btn">Pilih File</label>
+                                    <span class="file-name">Tidak ada file yang dipilih</span>
+                                    <input type="file" style="visibility:hidden;" name="gambar" id="upload-file">
+                            </div>
+                            <div class="kirim-button-container">
+                                <input type="button" value="Kirim" id="kirim-btn">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <?php
+                    $id_post = $row_comment['id_postingan'];
+                    $query_subcomment = mysqli_query($conn, "SELECT * FROM db_postingan WHERE id_forum=$id_forum AND id_parent=$id_post");
+                    while($row_subcomment = mysqli_fetch_array($query_subcomment)):
+                ?>
+                    <div class="post-container" style="margin-left: 90px; margin-top: 10px;">
+                        <div class="post-header-container">
+                            <div class="avatar" style="background-color: <?php echo $randomColor(); ?>"></div>
+                            <div class="header-container">
+                                <div class="topic">
+                                    <?php echo $header['judul_forum']?> - <?php echo $header['nama_guru']?>
+                                </div>
+                                <div class="user">
+                                    Dari: <?php echo $row_comment['nama_user']?> - <?php echo $row_comment['userid']?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-container">
+                            <?php echo $row_comment['pesan']?>
+                        </div>
+                        <div class="reply-button-container">
+                            <input type="button" value="balas" class="reply-btn">
+                            <div class="reply-container">
+                                <textarea placeholder="Tuliskan komentar..." name="input-pesan" id="input-pesan" cols="30" rows="10"></textarea>
+                                <div class="upload-container">
+                                        <label for="upload-file" class="file-btn">Pilih File</label>
+                                        <span class="file-name">Tidak ada file yang dipilih</span>
+                                        <input type="file" style="visibility:hidden;" name="gambar" id="upload-file">
+                                </div>
+                                <div class="kirim-button-container">
+                                    <input type="button" value="Kirim" id="kirim-btn">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php endwhile; ?>
+            <?php endwhile; ?>
         </div>
-    <?php endwhile;?>
+    <?php endwhile; ?> 
+    <div class="footer">
+        copyright	&#169; - SMK Paramarta
+    </div>
 </body>
+
+
+
+
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('.reply').click(function(){
+        $('.reply-btn').click(function(){
             if ( this.value === 'Batal' ) {
                 // if it's open close it
                 open = false;
                 this.value = 'Balas';
-                $(this).next("div.input-pesan-container").slideUp("fast");
+                $(this).next("div.reply-container").slideUp("fast");
             }
             else {
                 // if it's close open it
                 open = true;
                 this.value = 'Batal';
                 $(this).siblings("[value='Batal']").click();
-                $(this).next("div.input-pesan-container").slideDown("fast");
+                $(this).next("div.reply-container").slideDown("fast");
             }
         });
+    });
+
+    $("#upload-file").change(function() {
+        filename = this.files[0].name;
+        $(".file-name").text(filename);
     });
 </script>
 </html>

@@ -1,100 +1,144 @@
 body{
-    background-color: rgb(247, 249, 255);
+    background-color: rgb(232, 236, 248);
     margin: 0 auto;
 }
-
-/* page header css */
-.page-header-container{
-    height: 150px;
+/* navbar css */
+.navbar{
+    margin: 0 auto;
+    position: absolute;
     width: 100%;
-    background-color: rgb(46, 41, 72);
-    margin-bottom: 20px;
+    padding: 15px;
+    color: grey;
+}
+.back-btn{
+    font-size: 15pt;
+    background-color: cadetblue;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 12pt;
+}
+.back-btn:hover{
+    background-color: rgb(139, 207, 209);
+}
+.title{
+    font-size: 15pt;
+}
+/* end of navbar */
+/* page header css */
+.page-header{
     text-align: center;
-    /* border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px; */
+    padding: 105px 85px 55px 85px;
 }
-.page-title{
-    padding-top: 45px;
-    font-size: 20pt;
+.judul-forum{
+    font-size: 18pt;
     font-weight: bold;
-    color: white;
 }
-.page-subtitle{
-    color: white;
-}
-/* kontent css */
-.content-container{
+/* end of page header */
+/* main post css */
+
+.main-post-container{
+    padding: 15px;
     margin-left: 200px;
     margin-right: 200px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
 }
-.content{
-    padding: 20px;
+.post-container{
     background-color: white;
+    padding: 20px;
     border-radius: 15px;
 }
-.header-container{
+.post-header-container{
     display: flex;
     align-items: center;
 }
-.icon{
-    margin-right: 15px;
+.avatar{
     height: 40px;
     width: 40px;
+    background-color: bisque;
     border-radius: 100px;
+    margin-right: 15px;
 }
-.title{
-    font-size: 11pt;
+.topic{
     font-weight: bold;
-    color: rgb(134, 134, 134);
+    color: grey;
 }
-.username{
-    color: rgb(63, 63, 63);
+.user{
     font-size: 10pt;
+    color: grey;
 }
-.pesan-container{
-    margin-left: 55px;
+.message-container{
     margin-top: 10px;
 }
-.button-container{
-    text-align: end;
+.reply-button-container{
+    border-top: 1px solid rgba(128, 128, 128, 0.164);
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 20px;
 }
-.reply{
+.reply-btn{
     border: none;
-    padding: 5px 15px 5px 15px;
-    background-color: rgba(127, 255, 212, 0.514);
-    border-radius: 10px;
+    height: 35px;
+    width: 80px;
+    border-radius: 5px;
 }
-.input-pesan-container{
-    display: none;
-}
-.input-form{
-    border-radius: 15px;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    width: 98%;
-    height: 100px;
-    background-color: rgb(231, 231, 231);
-}
-.reply:hover{
+.reply-btn:hover{
+    cursor: pointer;
     background-color: aquamarine;
 }
-textarea{
+.reply-container{
+    display: none;
+    padding-right: 19px;
+    padding-top: 10px;
+}
+#input-pesan{
+    width: 100%;
     resize: none;
+    height: 100px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.116);
+    padding: 10px;
 }
-.kirim-container{
-    padding-left: 10px;
-    width: 90%;
-    text-align: start;
+.upload-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
-/* commentar css */
-.comment-container{
-    padding: 20px;
-    background-color: white;
-    margin-left: 40px;
+.file-btn{
+    font-size: 10pt;
+    padding: 8px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
+}
+.file-btn:hover{
+    cursor: pointer;
+    background-color: aquamarine;
+}
+.file-name{
+    margin-left: 10px;
+    font-size: 10pt;
+    color: grey;
+}
+.kirim-button-container{
     margin-top: 10px;
-    border-radius: 15px;
+    text-align: left;
 }
+#kirim-btn{
+    border: none;
+    height: 35px;
+    width: 80px;
+    border-radius: 5px;
+}
+#kirim-btn:hover{
+    cursor: pointer;
+    background-color: aquamarine;
+}
+/* end of main post css */
+/* footer css */
+.footer{
+    text-align: center;
+    color: grey;
+    padding: 10px;
+}
+/* end of footer */
