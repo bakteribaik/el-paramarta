@@ -22,6 +22,33 @@
     if ($header['kode_jurusan'] != $_SESSION['jurusan']) {
         header('Location:javascript:history.go(-1)');
     }
+
+    if (isset($_POST['kirim-comment'])) {
+        $idparent = $_POST['idparent'];
+        $text = $_POST['input-comment'];
+        $userid = $_SESSION['userid'];
+        $name = $_SESSION['name'];
+
+        mysqli_query($conn, "INSERT INTO db_postingan (id_parent, id_forum, userid, nama_user, pesan) VALUES ('$idparent', '$id_forum', '$userid', '$name', '$text')");
+    }
+
+    if (isset($_POST['kirim-sub-comment'])) {
+        $idparent = $_POST['subidparent'];
+        $text = $_POST['input-subcomment'];
+        $userid = $_SESSION['userid'];
+        $name = $_SESSION['name'];
+
+        mysqli_query($conn, "INSERT INTO db_postingan (id_parent, id_forum, userid, nama_user, pesan) VALUES ('$idparent', '$id_forum', '$userid', '$name', '$text')");
+    }
+
+    if (isset($_POST['kirim-subsub-comment'])) {
+        $idparent = $_POST['subsubidparent'];
+        $text = $_POST['input-subsubcomment'];
+        $userid = $_SESSION['userid'];
+        $name = $_SESSION['name'];
+
+        mysqli_query($conn, "INSERT INTO db_postingan (id_parent, id_forum, userid, nama_user, pesan) VALUES ('$idparent', '$id_forum', '$userid', '$name', '$text')");
+    }
 ?>  
 
 <!DOCTYPE html>
@@ -37,7 +64,6 @@
 <body>
     <div class="navbar">
         <a href="../siswa/dashboard" class="back-btn">Dashboard</a>
-        <!-- <span class="title">| E-Learning</span> - Forum Diskusi <?php echo $header['kode_jurusan'];?> -->
     </div>
     <div class="page-header">
         <div class="judul-forum">
@@ -69,19 +95,25 @@
                 </div>
                 <div class="message-container">
                     <?php echo $row['pesan']?>
+                    <div class="image-container">
+                        <img src="../image/logo_paramarta.png" alt="">
+                    </div>
                 </div>
                 <div class="reply-button-container">
                     <input type="button" value="balas" class="reply-btn">
                     <div class="reply-container">
-                        <textarea placeholder="Tuliskan komentar..." name="input-pesan" id="input-pesan" cols="30" rows="10"></textarea>
-                        <div class="upload-container">
-                                <label for="upload-file" class="file-btn">Pilih File</label>
-                                <span class="file-name">Tidak ada file yang dipilih</span>
-                                <input type="file" style="visibility:hidden;" name="gambar" id="upload-file">
-                        </div>
-                        <div class="kirim-button-container">
-                            <input type="button" value="Kirim" id="kirim-btn">
-                        </div>
+                        <form action="" method="POST">
+                            <input type="hidden" name="idparent" value="<?php echo $row['id_postingan']; ?>">
+                            <textarea placeholder="Tuliskan komentar..." name="input-comment" id="input-pesan" cols="30" rows="10"></textarea>
+                            <div class="upload-container">
+                                    <label for="upload-file" class="file-btn">Pilih File</label>
+                                    <span class="file-name">Tidak ada file yang dipilih</span>
+                                    <input type="file" style="visibility:hidden;" name="upload-file" id="upload-file">
+                            </div>
+                            <div class="kirim-button-container">
+                                <input type="submit" name="kirim-comment" value="Kirim" id="kirim-btn">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -90,7 +122,6 @@
                 $query_comment = mysqli_query($conn, "SELECT * FROM db_postingan WHERE id_forum=$id_forum AND id_parent=$id_post");
                 while($row_comment = mysqli_fetch_array($query_comment)):
             ?>
-            <!-- style="margin-left: 90px; margin-top: 10px;" -->
                 <div class="post-container" style="margin-left: 50px; margin-top: 10px;">
                     <div class="post-header-container">
                         <div class="avatar" style="background-color: <?php echo $randomColor(); ?>"></div>
@@ -109,15 +140,18 @@
                     <div class="reply-button-container">
                         <input type="button" value="balas" class="reply-btn">
                         <div class="reply-container">
-                            <textarea placeholder="Tuliskan komentar..." name="input-pesan" id="input-pesan" cols="30" rows="10"></textarea>
-                            <div class="upload-container">
-                                    <label for="upload-file" class="file-btn">Pilih File</label>
-                                    <span class="file-name">Tidak ada file yang dipilih</span>
-                                    <input type="file" style="visibility:hidden;" name="gambar" id="upload-file">
-                            </div>
-                            <div class="kirim-button-container">
-                                <input type="button" value="Kirim" id="kirim-btn">
-                            </div>
+                            <form action="" method="post">
+                                <input type="hidden" name="subidparent" value="<?php echo $row_comment['id_postingan'] ?>">
+                                <textarea placeholder="Tuliskan komentar..." name="input-subcomment" id="input-pesan" cols="30" rows="10"></textarea>
+                                <div class="upload-container">
+                                        <label for="upload-file" class="file-btn">Pilih File</label>
+                                        <span class="file-name">Tidak ada file yang dipilih</span>
+                                        <input type="file" style="visibility:hidden;" name="upload-file" id="upload-file">
+                                </div>
+                                <div class="kirim-button-container">
+                                    <input type="submit" name="kirim-sub-comment" value="Kirim" id="kirim-btn">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -134,25 +168,28 @@
                                     <?php echo $header['judul_forum']?> - <?php echo $header['nama_guru']?>
                                 </div>
                                 <div class="user">
-                                    Dari: <?php echo $row_comment['nama_user']?> - <?php echo $row_comment['userid']?>
+                                    Dari: <?php echo $row_subcomment['nama_user']?> - <?php echo $row_subcomment['userid']?>
                                 </div>
                             </div>
                         </div>
                         <div class="message-container">
-                            <?php echo $row_comment['pesan']?>
+                            <?php echo $row_subcomment['pesan']?>
                         </div>
                         <div class="reply-button-container">
                             <input type="button" value="balas" class="reply-btn">
                             <div class="reply-container">
-                                <textarea placeholder="Tuliskan komentar..." name="input-pesan" id="input-pesan" cols="30" rows="10"></textarea>
-                                <div class="upload-container">
-                                        <label for="upload-file" class="file-btn">Pilih File</label>
-                                        <span class="file-name">Tidak ada file yang dipilih</span>
-                                        <input type="file" style="visibility:hidden;" name="gambar" id="upload-file">
-                                </div>
-                                <div class="kirim-button-container">
-                                    <input type="button" value="Kirim" id="kirim-btn">
-                                </div>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="subsubidparent" value="<?php echo $row_subcomment['id_parent']?>">
+                                    <textarea placeholder="Tuliskan komentar..." name="input-subsubcomment" id="input-pesan" cols="30" rows="10"></textarea>
+                                    <div class="upload-container">
+                                            <label for="upload-file" class="file-btn">Pilih File</label>
+                                            <span class="file-name">Tidak ada file yang dipilih</span>
+                                            <input type="file" style="visibility:hidden;" name="upload-file" id="upload-file">
+                                    </div>
+                                    <div class="kirim-button-container">
+                                        <input type="submit" name='kirim-subsub-comment' value="Kirim" id="kirim-btn">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

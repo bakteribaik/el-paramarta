@@ -1,24 +1,21 @@
 
 body{
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
+    margin: 0;
 }
 .sidebar{
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 200px;
-    height: 100%;
+    padding: 30px;
+    width: 220px;
+    height: 100%; 
     position: fixed;
-    left: 0;
-    top: 0;
-    background-color: transparent;
+    background-color: rgb(255, 255, 255);
     overflow-x: hidden;
 }
 .sidebar-title{
     font-weight: bold;
     font-size: 18pt;
     font-family: 'Poppins-Bold';
-    color: rgb(46, 41, 72);
+    color: rgb(41, 40, 40);
 }
 .sidebar-subtitle{
     margin-top: -10px;
@@ -73,7 +70,7 @@ a{
 }
 .mapel-container{
     margin-top: 10px;
-    background-color: white;
+    background-color: rgb(243, 243, 243);
     padding: 10px;
     width: 88%;
     border-radius: 20px;
@@ -108,10 +105,9 @@ a{
     color: grey;
 }
 .content-container{
-    margin-left: 250px;
+    margin-left: 280px;
     padding: 30px;
-    border-radius: 30px;
-    background-color: rgb(247, 249, 255);
+    background-color: rgb(220, 239, 255);
     height: 100vh;
     display: flex;
 }
@@ -134,12 +130,14 @@ a{
     border-radius: 100px;
     background-color: aquamarine;
 }
+#myChart{
+    margin-top: 30px;
+}
 .scrollable-container{
     margin-top: 50px;
 }
 .daring-header{
     font-weight: bold;
-    color: rgb(69, 61, 110);
 }
 .daring-parent-container{
     margin-top: 15px;
@@ -152,9 +150,6 @@ a{
     padding: 20px;
     border-radius: 15px;
     display: flex;
-}
-.daring-parent-container:hover{
-    background-color: rgb(207, 252, 237);
 }
 .daring-logo-container{
     height: 40px;
@@ -188,12 +183,17 @@ a{
     font-size: 10pt;
     color: grey;
 }
-#calendar{
-    width: 400px;
-    height: 300px;
+.calendar-container{
+    margin-top: 20px;
+    height: 250px;
+    background-color: white;
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
 }
 .online-header{
-    margin-top: 40px;
+    margin-top: 20px;
     font-family: 'Poppins-Bold';
     color: rgb(66, 155, 106);
 }

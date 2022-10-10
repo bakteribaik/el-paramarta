@@ -29,7 +29,7 @@
     <title>Elearning SMK Paramarta | Dashboard</title>
 </head>
 <body>
-    <div class="sidebar">
+        <div class="sidebar">
             <div class="sidebar-title">
                 Elearning
             </div>
@@ -50,7 +50,7 @@
                 <div class="menu-container">
                     <div class="menu-logo-container">
                         <div class="menu-logo">
-                            <i class="material-icons">waving_hand</i>
+                            <i class="material-icons">exit_to_app</i>
                         </div>
                     </div>
                     <div class="menu-title">
@@ -142,9 +142,10 @@
                 <div class="topbar-title">
                     <a href=""><?php echo $_SESSION['name']?></a>
                 </div>
-                <div class="topbar-profile">
-
-                </div>
+                <div class="topbar-profile"></div>
+            </div>
+            <div class="calendar-container">
+                disini nanti ada calendar
             </div>
             <div class="online-header">
                 Siswa Online
@@ -190,8 +191,8 @@
     labels: labels,
     datasets: [{
       label: 'Rata - Rata Nilai Setiap Semester',
-      backgroundColor: 'rgb(69, 61, 110)',
-      borderColor: 'rgb(69, 61, 110)',
+      backgroundColor: 'white',
+      borderColor: 'green',
       data: [0, 80, 75, 80, 95, 85, 75, 100, 90],
       tension: 0.1,
     }]
