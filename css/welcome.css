@@ -1,105 +1,94 @@
 body{
-    background-color: rgb(220, 239, 255);
+    background-color: white;
     margin: 0;
+    overflow: hidden;
 }
 
-.navbar{
-    padding: 20px 20px 20px 20px;
-    position: relative;
+/* content container css */
+.welcome-container{
     display: flex;
-    align-items: center;
+}
+.welcome-image{
+    height: 100vh;
+}
+
+.login-container{
+    text-align: center;
+    width: 100%;
+}
+.title{
+    margin-top: 200px;
+    font-family: 'Poppins-Bold';
+    color: grey;
+    font-size: 2.7em;
+}
+.subtitle{
+    color: rgba(128, 128, 128, 0.692);
+    font-size: 1em;
+}
+.input-container{
+    margin-top: 20px;
+}
+input{
+    border: 1px solid rgba(128, 128, 128, 0.589);
+    border-radius: 100px;
+    margin-top: 20px;
+    width: 400px;
+    padding: 20px;
+}
+input:hover{
+    background-color: rgb(220, 242, 250);
+}
+input:focus{
+    background-color: rgb(220, 242, 250);
+}
+input[type=submit]{
+    border: none;
+    background-color: rgb(220, 242, 250);
+}
+input[type=submit]:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(92, 132, 146);
 }
 a{
     text-decoration: none;
-    color: rgb(46, 41, 72);
-    padding-right: 20px;
+    color: rgb(92, 132, 146);
 }
-a:hover{
-    font-weight: bold;
+.notice-text{
+    color: rgba(128, 128, 128, 0.719);
 }
-.logo{
-    height: 50px;
-    padding-right: 20px;
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-table{
-    padding: 40px 40px 40px 40px;
-    margin: 0 auto;
+input[type=number] {
+    -moz-appearance: textfield;
 }
-.welcome-text{
-    color: rgb(46, 41, 72);
-    font-family: 'Poppins-Bold';
-    font-size: 40pt;
-}
-.welcome-text2{
-    margin-top: -50px;
-    color: rgb(46, 41, 72);
-    font-size: 30pt;
-}
-.welcome-image{
-    margin-left: -360px;
-    height: 600px;
-}
-.login-container{
-    background-color: white;
-    height: 400px;
-    width: 450px;
-    border-radius: 30px;
-    margin-left: 60px;
-    padding: 40px;
-    text-align: center;
-}
-.login-welcome{
-    font-size: 17pt;
-    text-align: center;
-}
-form{
-    margin-top: 20px;
-}
-#forminput{
-    height: 50px;
-    width: 400px;
-    padding-left: 20px;
-    border: 0px;
-    background-color: rgba(128, 128, 128, 0.185);
-    border-radius: 20px;
-    border-color: rgb(247, 249, 255);
-}
-#forminputPassword{
-    height: 50px;
-    width: 400px;
-    padding-left: 20px;
-    border: 0px;
-    background-color: rgba(128, 128, 128, 0.185);
-    border-radius: 20px;
-    border-color: rgb(247, 249, 255);
-}
-#forminput:hover{
-    background-color: rgb(46, 41, 72);
-    color: white;
-}
-#forminputPassword:hover{
-    background-color: rgb(46, 41, 72);
-    color: white;
-}
-.rememberme-wrapper{
-    font-size: 10pt;
-    text-align: left;
-    padding-left: 15px;
-}
-#submitbutton{
-    margin-top: 50px;
-    height: 40px;
-    width: 100px;
-    border: none;
-    border-radius: 15px;
-    background-color: aquamarine;
-}
-#submitbutton:hover{
-    background-color: rgb(46, 41, 72);
-    color: white;
-}
-.lupapassword{
-    font-size: 10pt;
-    margin-left: 20px;
-    text-align: center;
+/* end of content container */
+
+@media screen and (max-width: 500px) {
+    .welcome-image-container{
+        display: none;
+    }
+    .logo{
+        display: none;
+    }
+    .title{
+        margin-top: 100px;
+        font-size: 2em;
+    }
+    .subtitle{
+        font-size: 0.8em;
+    }
+    input{
+        width: 300px;
+    }
+    .notice-text{
+        font-size: 0.8em;
+    }
 }

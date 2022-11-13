@@ -104,7 +104,7 @@
                         <div class="daring-logo-container" style="background-color: <?php echo $randomColor(); ?>"></div>
                         <div class="detail-container">
                             <div class="nama-guru">
-                                <?php echo $row['nama_guru']?> | <?php echo $row['nama_mapel']?> | 04 Oktober 2022
+                                <?php echo $row['nama_guru']?> | <?php echo $row['nama_mapel']?> | <?php echo $row['kode_jurusan']?>
                             </div>
                             <div class="daring-detail">
                                 <span class="judul-daring">

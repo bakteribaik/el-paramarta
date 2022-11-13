@@ -44,10 +44,8 @@
           }
         
         } else{
-            echo "<script>alert('Login Gagal!');</script>";
+            echo "<script>alert('invalid username or password')</script>";
         }
-
-        
     }
 ?>
 
@@ -59,49 +57,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/welcome.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <title>SMK Paramarta | elearning portal</title>
 </head>
 <body>
-    <nav class="navbar">
-        <img src="image/logo_paramarta.png" class='logo'>
-        <a href="https://smkparamarta.sch.id/" class = "active">Website</a>
-        <a href="#">Panduan</a>
-        <a href="#">Bantuan</a>
-    </nav>
-
-    <table>
-        <tr>
-            <td>
-                <div class = "welcome-text">
-                    SMK PARAMARTA
-                </div><br>
-                <div class = "welcome-text2">
-                    E-Learning Portal
-                </div>
-                <img src="image/welcome_image.png" class='welcome-image'>
-            </td>
-            <td>
-                <div class = 'login-container'>
-                    <div class = 'login-welcome'>
-                        Login dengan akunmu
+    <div class="logo-sekolah">
+        <img src="image/logo_paramarta.png" style="z-index: 2; position: absolute; height: 80px; margin-left:20px; margin-top: 20px;" class="logo">
+    </div>
+    <div class="content-container">
+        <div class="welcome-container">
+            <div class="welcome-image-container">
+                <img src="image/welcome_image2.png" class="welcome-image">
+            </div>
+            <div class="login-container">
+                <form method="post">
+                    <div class="title">SMK PARAMARTA</div>
+                    <div class="subtitle">Learning Management System Online</div>
+                    <div class="input-container">
+                        <input type="number" name="username" placeholder="NISN/NIDN" autofocus required><br>
+                        <input type="password" name="password" id="password" placeholder="PASSWORD">
+                        <span class="material-symbols-outlined" id="lihatpassword" style="position: absolute; margin-top: 40px; margin-left: -45px; color: grey; cursor: pointer;" onclick='showPassword()'>visibility</span><p>
+                        <input type="submit" name="login" value="LOGIN"><p>
+                        <a href="#">Lupa Password?</a>
+                        <hr width="20%" style="opacity: 0.5; margin-top: 40px;"><br>
+                        <div class="notice-text">
+                            jika ada kendala ketika menggunakan LMS<br>harap untuk menghubungi pihak sekolah
+                        </div>
                     </div>
-                    <form action="" method="post" onsubmit="return loginCheck()">
-                        <input type="text" name="username" id="forminput" placeholder='NISN/NIGN' autofocus>
-                        <p>
-                        <input type="password" name="password" id="forminputPassword" placeholder='Password'>
-                        <p>
-                            <div class='rememberme-wrapper'>
-                                <input type="checkbox" name="showPass" id="showPass" onClick="showPassword()">
-                                Lihat Password
-                            </div>
-                        <p>
-                        <input type="submit" name="login" value="login" id='submitbutton'>
-                    </form>
-                    <a href="#" class = 'lupapassword'>Lupa Password?</a>
-                </div>
-            </td>
-        </tr>
-    </table>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
-<script type="text/javascript" src="js/login.js""></script>
+<script type="text/javascript">
+    function showPassword(){
+        x = document.getElementById('lihatpassword')
+        z = document.getElementById("password")
+        if (z.type === 'password') {
+            z.type = "text"
+            x.textContent = "visibility_off";
+        }else{
+            z.type = "password"
+            x.textContent = "visibility";
+        }
+    }
+</script>
 </html>
