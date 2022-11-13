@@ -1,0 +1,185 @@
+body{
+    background-color: #EDF7FA;
+    margin: 0;
+}
+
+.web-container{
+    display: flex;
+}
+
+/* sidebar css */
+.sidebar-container{
+    width: 120px;
+    text-align: center;
+    position: fixed;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 3px 3px 20px rgba(128, 128, 128, 0.158);
+}
+.icon{
+    margin: 30px;
+    border-radius: 20px;
+    margin-top: 100px;
+    padding: 15px 15px 10px 15px;
+    color: #3A8099;
+}
+.icon:hover{
+    background-color: #3A8099;
+    color: white;
+    cursor: pointer;
+}
+.active{
+    background-color: #3A8099;
+    color: white;
+}
+/* end of sidebar */
+
+
+
+
+/* content css */
+.content-container{
+    margin-top: 40px;
+    margin-left: 160px;
+}
+/* end of content css */
+
+
+/* class header css */
+
+.header-container{
+    display: flex;
+    width: 88vw;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-title{
+    font-size: 1.5em;
+    font-family: 'Poppins-Bold';
+    color: #012330;
+}
+.user-container{
+    text-align: right;
+}
+.username{
+    font-weight: bold;
+    color: #012330;
+    font-size: 1.1em;
+}
+.responsibility{
+    color: #012330;
+}
+
+/* end of class header */
+
+
+/* class body container css */
+.body-container{
+    display: flex;
+}
+.body-left{
+    min-width: 60vw;
+    padding-top: 40px;
+}
+.body-right{
+    padding-top: 40px;
+}
+.card-container{
+    display: flex;
+}
+.card-left{
+    position: relative;
+    background-color: #00A7A3;
+    padding: 20px 20px 30px 20px;
+    border-radius: 15px;
+    min-width: 300px;
+    max-width: 300px;
+    margin-right: 20px;
+    box-shadow: 0px 10px 10px rgba(128, 128, 128, 0.205);
+}
+.card-right{
+    background-color: white;
+    padding: 20px 20px 30px 20px;
+    border-radius: 15px;
+    min-width: 300px;
+    max-width: 300px;
+    box-shadow: 0px 10px 10px rgba(128, 128, 128, 0.205);
+    position: relative;
+}
+.card-title{
+    font-family: 'Poppins-Bold';
+    font-size: 1.5em;
+    color: white;
+}
+.card-subtitle{
+    font-size: 0.9em;
+    color: white;
+}
+.element{
+    position: absolute;
+    color: white;
+    text-align: right;
+    bottom: 0;
+    right: 15px;
+}
+.element2{
+    position: absolute;
+    color: #012330;
+    text-align: right;
+    bottom: 0;
+    right: 15px;
+}
+.card-title2{
+    font-family: 'Poppins-Bold';
+    font-size: 1.5em;
+    color: #012330;
+}
+.card-subtitle2{
+    font-size: 0.9em;
+    color: #012330;
+}
+
+.forum-list-container{
+    margin-top: 30px;
+}
+.list-container-title{
+    font-family: 'Poppins-Bold';
+    color: #012330;
+    font-size: 1.5em;
+}
+.list-container-subtitle{
+    color: #012330;
+}
+.list-forum{
+    margin-top: 20px;
+}
+.list-container{
+    margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.list-container:hover{
+    box-shadow: 0px 0px 20px #0123304d;
+    z-index: 3;
+}
+.list-container a{
+    text-decoration: none;
+    color: #3A8099;
+    font-weight: bold;
+}
+.list-status{
+    color: #00A7A3;
+    font-weight: bold;
+}
+.list-button{
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    background-color: #3A8099;
+    color: white;
+    font-size: 0.8em;
+}
