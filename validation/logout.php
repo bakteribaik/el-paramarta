@@ -13,5 +13,5 @@
     unset($_SESSION['userid']);
     unset($_SESSION['password']);
     session_destroy();
-    header("location:../home");
+    header("location:../pages/home");
 ?>
