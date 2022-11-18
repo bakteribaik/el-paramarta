@@ -1,0 +1,240 @@
+body{
+    margin: 0;
+    background-color: rgba(128, 128, 128, 0.13);
+    overflow: hidden;
+}
+a{
+    text-decoration: none;
+}
+
+/* class navbar */
+
+.web-logo{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: grey;
+}
+.navbar{
+    background-color: white;
+    display: flex;
+    padding-top: 18px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: grey;
+}
+.navbar a:hover{
+    font-weight: bold;
+}
+.username{
+    margin-left: 40px;
+    font-weight: 500;
+}
+/* end of navbar class */
+
+
+
+
+/* class content-container */
+.content-container{
+    display: flex;
+}
+/* end of class content-container */
+
+
+
+/* class sideleft-bar */
+.sideleft-bar{
+    padding: 40px;
+}
+.item{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    color: grey;
+}
+.item a{
+    margin-top: 2px;
+    margin-left: 10px;
+    color: grey;
+}
+.item a:hover{
+    font-weight: bold;
+}
+
+
+.mapel-header{
+    margin-top: 50px;
+    font-weight: bold;
+    color: grey;
+}
+
+
+.mapel-container{
+    margin-top: 10px;
+}
+.mapel-card{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.avatar{
+    border-radius: 100px;
+    height: 15px;
+    width: 15px;
+    background-color: aqua;
+    margin-right: 20px;
+}
+.mapel-title{
+    color: grey;
+    text-overflow: ellipsis;
+}
+.mapel-subtitle{
+    font-size: 10pt;
+    color: grey;
+}
+/* end of classh side left */
+
+
+
+/* class centerside */
+.centerside{
+    padding: 61px 61px 61px 61px;
+    position: relative;
+    overflow-y: scroll;
+    height: 100vh;
+}
+.available-forum-header{
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+    font-size: 1.3em;
+}
+.available-forum-subheader{
+    color: grey;
+    margin-bottom: 20px;
+}
+.forum-container{
+    margin-bottom: 150px;
+}
+.forum-card{
+    border-radius: 15px;
+    min-width: 1000px;
+    max-width: 1000px;
+    padding: 40px 30px 40px 30px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+.forum-card a{
+    color: rgb(37, 170, 231);
+}
+.forum-title{
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.user-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.user{
+    font-weight: bold;
+    color: grey;
+}
+.userjob{
+    font-size: 10pt;
+    color: grey;
+}
+.right-tag{
+    display: flex;
+}
+.forum-tag{
+    border-radius: 55px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(212, 241, 250);
+    color: rgb(46, 112, 133);
+    margin-left: 10px;
+    font-size: 10pt;
+}
+.status{
+    background-color: rgb(168, 255, 236);
+    color: rgb(16, 104, 85);
+}
+.closed{
+    background-color: rgb(255, 168, 197);
+    color: rgb(104, 16, 31);
+}
+.forum-desc{
+    color: grey;
+    margin-bottom: 20px;
+}
+.created-at{
+    font-size: 10pt;
+    color: grey;
+}
+/* END OF CENTERSIDE */
+
+
+/* class rightside-bar */
+.rightside-bar{
+    width: fit-content;
+    padding-top: 61px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+.user-jurusan-title{
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.user-jurusan-subtitle{
+    font-size: 10pt;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+.right-avatar{
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.photo{
+    border-radius: 15px;
+    height: 100px;
+    width: 100px;
+    background-size: contain;
+    background-image: url('https://www.smpn23krui.sch.id/wp-content/uploads/2022/03/No-photo.jpg');
+    background-color: rgba(128, 128, 128, 0.24);
+}
+
+.user-button{
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+.user-item{
+    font-size: 10pt;
+}
+
+.useronline-header{
+    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: grey;
+}
+.useronline-card{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.online-detail{
+    color: grey;
+}

@@ -14,7 +14,11 @@
         $rand = rand(0, count($colors) - 1);
         return isset($colors[$rand]) ? $colors[$rand] : $colors[0];
     }
-?>  
+    
+    // $siswaID = $_SESSION['userid'];
+    // $siswa = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM db_siswa WHERE userid = $siswaID"));
+
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,194 +27,131 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/dash_siswa.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>Elearning SMK Paramarta | Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/newDashboardSiswa.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Dashboard Siswa | SMK Paramarta</title>
 </head>
 <body>
-        <div class="sidebar">
-            <div class="sidebar-title">
-                Elearning
+    <div class="navbar">
+        <div class="web-logo">
+            LMS SMK Paramarta
+            <!-- <img src="../../assets/image/logo_paramarta.png" style="height: 60px;"> -->
+        </div>
+        <div class="navitems">
+            <span><a href="">Official Website</a></span>
+            <span><a href="">Panduan</a></span>
+            <span><a href="">Bantuan</a></span>
+            <span class="username"><a href=""><?= $_SESSION['name'] ?></a></span>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="sideleft-bar">
+            <div class="side-item">
+                <div class="item"><span class="material-symbols-outlined">home</span><a href="">Dashboard</a></div>
+                <div class="item"><span class="material-symbols-outlined">account_circle</span><a href="">Profile</a></div>
+                <div class="item"><span class="material-symbols-outlined">logout</span><a href="../../validation/logout.php">Keluar</a></div>
             </div>
-            <div class="sidebar-subtitle">
-                SMK Paramarta
-            </div>
-            <div class="sidebar-menu-container">
-                <div class="menu-container">
-                    <div class="menu-logo-container">
-                        <div class="menu-logo">
-                            <i class="material-icons">apps</i>
-                        </div>
-                    </div>
-                    <div class="menu-title">
-                        <a href="">Dashboard</a>
-                    </div>
-                </div>
-                <div class="menu-container">
-                    <div class="menu-logo-container">
-                        <div class="menu-logo">
-                            <i class="material-icons">exit_to_app</i>
-                        </div>
-                    </div>
-                    <div class="menu-title">
-                        <a href="../../validation/logout.php">Keluar</a>
-                    </div>
-                </div>
-            </div>
-
-        <div class="mapel-title-container">
-            <div class="mapel-title">
+            <div class="mapel-header">
                 Mata Pelajaran
             </div>
-        </div>
-
-        <?php
-            $jurusan = $_SESSION['jurusan'];
-            $sql = mysqli_query($conn, "SELECT * FROM db_mapel WHERE kode_jurusan='$jurusan' ");
-            while($row = mysqli_fetch_array($sql)): //nampilin semua mapel sesuai kode_jurusan
-        ?>
-        <div class="mapel-container">
-            <div class="mapel-logo" style="background-color: <?php echo $randomColor(); ?>">
-            </div>
-            <div class="mapel-detail-container">
-                <div class="nama-mapel">
-                    <?php echo $row['nama_mapel']?> <!-- tampil nama mapel-->
-                </div>
-                <div class="mapel-guru">
-                <?php echo $row['nama_guru']?> <!-- tampil nama guru-->
-                </div>
-            </div>
-        </div>
-        <?php endwhile; ?>
-    </div>
-
-    <div class="content-container">
-        <div class="content">
-            <canvas id="myChart" width="250" height="50"></canvas>
-            <div class="scrollable-container">
-                <div class="daring-header">
-                    Kelas online yang tersedia saat ini
-                </div>
-
+            <div class="mapel-container">
                 <?php
-                    $jurusan = $_SESSION['jurusan'];
-                    $sql = mysqli_query($conn, "SELECT * FROM db_forum WHERE kode_jurusan='$jurusan' ORDER BY status_forum='OPEN' DESC");
-                    while($row = mysqli_fetch_array($sql)):
+                    $kodejurusan = $_SESSION['jurusan'];
+                    $queryMapel = mysqli_query($conn, "SELECT * FROM db_mapel WHERE kode_jurusan = '$kodejurusan'");
+                    while($mapel = mysqli_fetch_array($queryMapel)) :
                 ?>
-
-                <div class="daring-parent-container">
-                    <div class="daring-detail-container">
-                        <div class="daring-logo-container" style="background-color: <?php echo $randomColor(); ?>"></div>
-                        <div class="detail-container">
-                            <div class="nama-guru">
-                                <?php echo $row['nama_guru']?> | <?php echo $row['nama_mapel']?> | <?php echo $row['kode_jurusan']?>
-                            </div>
-                            <div class="daring-detail">
-                                <span class="judul-daring">
-                                    <?php
-                                        if ($row['status_forum'] == "OPEN"){
-                                    ?>
-                                        <a href="../forum?id=<?php echo $row['id_forum']?>"><?php echo $row['judul_forum']?></a>
-                                    <?php } else { ?>
-                                        <?php echo $row['judul_forum']?>
-                                    <?php } ?>
-                                    <?php
-                                        if ($row['status_forum'] == "OPEN"){
-                                    ?>
-                                        <span class='forum-status-online'>
-                                            Open
-                                        </span>
-                                    <?php } else { ?>
-                                        <span class='forum-status-offline'>
-                                            Close
-                                        </span>
-                                    <?php } ?>
-                                </span>
-                                <br>
-                                <span class="deskripsi-daring"><?php echo $row['deskripsi_forum']?></span>
-                            </div>
+                    <div class="mapel-card">
+                        <div class="avatar" style="background-color: <?php echo $randomColor(); ?>"></div>
+                        <div class="mapel-details">
+                            <div class="mapel-title"><?= $mapel['nama_mapel']?></div>
+                            <div class="mapel-subtitle"><?= $mapel['nama_guru']?></div>
                         </div>
                     </div>
-                </div>
-                <?php endwhile;?>
-
+                <?php endwhile; ?>
             </div>
         </div>
-        <div class="content-kanan">
-            <div class="topbar-kanan-container">
-                <div class="topbar-title">
-                    <a href=""><?php echo $_SESSION['name']?></a>
-                </div>
-                <div class="topbar-profile"></div>
+
+        <div class="centerside">
+            <div class="available-forum-header">
+                Forum yang tersedia saat ini
             </div>
-            <div class="calendar-container">
-                disini nanti ada calendar
+            <div class="available-forum-subheader">
+                > klik pada bagian judul forum untuk diskusi, dan klik kerjakan quiz untuk melihat quiz
             </div>
-            <div class="online-header">
-                Siswa Online
-            </div>
-            <div class="online-container">
+            <div class="forum-container">
                 <?php
-                    $sql = mysqli_query($conn, "SELECT * FROM db_siswa WHERE statuses='ONLINE' ORDER BY userid ASC");    
-                    if (mysqli_num_rows($sql) > 0) {
-                        while ($row = mysqli_fetch_array($sql)) {
-                            if ($row['userid'] == $_SESSION['userid']) {
-                                echo '👉 ';
-                            }
-                            echo $row['nama_user'];
-                            echo ' - ';
-                            echo $row['userid'];
-                            echo ' - ';
-                            echo $row['kode_jurusan'];
-                            echo '<br>';
-                        }
-                    }
+                    $kodejurusan = $_SESSION['jurusan'];
+                    $queryForum = mysqli_query($conn, "SELECT * FROM db_forum WHERE kode_jurusan = '$kodejurusan' ORDER BY status_forum DESC");
+                    while($forum = mysqli_fetch_array($queryForum)) :
                 ?>
+                    <div class="forum-card">
+                        <a href="../forum?id=<?=$forum['id_forum']?>">
+                            <div class="forum-title"><?= $forum['judul_forum']?></div>
+                        </a>
+                        <div class="user-container">
+                            <div class="user-details">
+                                <div class="user"><?= $forum['nama_guru']?></div>
+                                <div class="userjob"><?= $forum['nama_mapel']?></div>
+                            </div>
+                            <div class="right-tag">
+                                <?php if($forum['id_quiz'] != NULL) { ?>
+                                    <a href="../quiz?id=<?=$forum['id_quiz']?>">
+                                        <div class="forum-tag">
+                                            klik disini untuk mengerjakan Quiz 📰
+                                        </div>
+                                    </a>
+                                <?php } ?>
+                                <?php if($forum['status_forum'] == 'OPEN') { ?>
+                                    <div class="forum-tag status">
+                                        Sesi Sedang Berjalan 🏃‍♀️
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="forum-tag closed">
+                                        Sesi Berakhir 👋
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="forum-desc">
+                        <?= $forum['deskripsi_forum']?>
+                        </div>
+                        <div class="created-at">
+                            Forum dibuat: <?= $forum['created_at']?>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+        <div class="rightside-bar">
+            <div class="right-user-details">
+                <div class="user-jurusan-title"><?= $_SESSION['jurusan'] ?></div>
+                <div class="user-jurusan-subtitle"> > Otomatisasi Keuangan Perkantoran</div>
+                <center>
+                    <div class="right-avatar">
+                        <div class="photo"></div>
+                    </div>
+                </center>
+                <div class="right-username"><center><?= $_SESSION['name'] ?></center></div>
+            </div>
+            <hr>
+            <!-- <div class="user-button">
+                <div class="user-item">Lihat Profil</div>
+            </div> -->
+            <div class="useronline-header">
+                Pengguna Online
+            </div>
+            <div class="useronline-container">
+                <?php
+                    $quryonline = mysqli_query($conn, "SELECT * FROM db_siswa WHERE statuses = 'ONLINE'");
+                    while($online = mysqli_fetch_array($quryonline)) :
+                ?>
+                    <div class="useronline-card">
+                        <div class="avatar" style="background-color: <?php echo $randomColor(); ?>"></div>
+                        <div class="online-detail"><?= $online['nama_user']?> - <?= $online['kode_jurusan']?></div>
+                    </div>
+                <?php endwhile; ?>
             </div>
         </div>
     </div>
 </body>
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  const labels = [
-    'Awal',
-    'Semester 1',
-    'Semester 2',
-    'Semester 3',
-    'Semester 4',
-    'Semester 5',
-    'Semester 6',
-    'Semester 7',
-    'Semester 8',
-  ];
-
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: 'Rata - Rata Nilai Setiap Semester',
-      backgroundColor: 'white',
-      borderColor: 'green',
-      data: [0, 80, 75, 80, 95, 85, 75, 100, 90],
-      tension: 0.1,
-    }]
-  };
-
-  const config = {
-    type: 'line',
-    data: data,
-    options: {
-        
-    }
-  };
-</script>
-<script>
-  const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-  );
-</script>
-
 </html>
-
