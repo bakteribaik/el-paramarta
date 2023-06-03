@@ -17,7 +17,6 @@
     
     // $siswaID = $_SESSION['userid'];
     // $siswa = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM db_siswa WHERE userid = $siswaID"));
-
 ?> 
 
 <!DOCTYPE html>
@@ -27,7 +26,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/newDashboardSiswa.css">
+    <link rel="stylesheet" href="../../assets/css/siswa-dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Dashboard Siswa | SMK Paramarta</title>
 </head>
@@ -38,7 +37,7 @@
             <!-- <img src="../../assets/image/logo_paramarta.png" style="height: 60px;"> -->
         </div>
         <div class="navitems">
-            <span><a href="">Official Website</a></span>
+            <span><a href="https://smkparamarta.sch.id" target="_blank">Official Website</a></span>
             <span><a href="">Panduan</a></span>
             <span><a href="">Bantuan</a></span>
             <span class="username"><a href=""><?= $_SESSION['name'] ?></a></span>
@@ -48,8 +47,8 @@
         <div class="sideleft-bar">
             <div class="side-item">
                 <div class="item"><span class="material-symbols-outlined">home</span><a href="">Dashboard</a></div>
-                <div class="item"><span class="material-symbols-outlined">account_circle</span><a href="">Profile</a></div>
-                <div class="item"><span class="material-symbols-outlined">logout</span><a href="../../validation/logout.php">Keluar</a></div>
+                <!-- <div class="item"><span class="material-symbols-outlined">account_circle</span><a href="">Profile</a></div> -->
+                <div class="item"><span class="material-symbols-outlined">logout</span><a href="../../validation/logout.php">Logout</a></div>
             </div>
             <div class="mapel-header">
                 Mata Pelajaran
@@ -82,50 +81,60 @@
                 <?php
                     $kodejurusan = $_SESSION['jurusan'];
                     $queryForum = mysqli_query($conn, "SELECT * FROM db_forum WHERE kode_jurusan = '$kodejurusan' ORDER BY status_forum DESC");
-                    while($forum = mysqli_fetch_array($queryForum)) :
+                    if (mysqli_num_rows($queryForum) != 0) {
                 ?>
-                    <div class="forum-card">
-                        <a href="../forum?id=<?=$forum['id_forum']?>">
-                            <div class="forum-title"><?= $forum['judul_forum']?></div>
-                        </a>
-                        <div class="user-container">
-                            <div class="user-details">
-                                <div class="user"><?= $forum['nama_guru']?></div>
-                                <div class="userjob"><?= $forum['nama_mapel']?></div>
-                            </div>
-                            <div class="right-tag">
-                                <?php if($forum['id_quiz'] != NULL) { ?>
-                                    <a href="../quiz?id=<?=$forum['id_quiz']?>">
-                                        <div class="forum-tag">
-                                            klik disini untuk mengerjakan Quiz 📰
+                    <?php while($forum = mysqli_fetch_array($queryForum)) : ?>
+                        <div class="forum-card">
+                            <a href="../forum?id=<?=$forum['id_forum']?>">
+                                <div class="forum-title"><?= $forum['judul_forum']?></div>
+                            </a>
+                            <div class="user-container">
+                                <div class="user-details">
+                                    <div class="user"><?= $forum['nama_guru']?></div>
+                                    <div class="userjob"><?= $forum['nama_mapel']?></div>
+                                </div>
+                                <div class="right-tag">
+                                    <?php if($forum['id_quiz'] != NULL) { ?>
+                                        <a href="../quiz?id=<?=$forum['id_quiz']?>">
+                                            <div class="forum-tag">
+                                                klik disini untuk mengerjakan Quiz 📰
+                                            </div>
+                                        </a>
+                                    <?php } ?>
+                                    <?php if($forum['status_forum'] == 'OPEN') { ?>
+                                        <div class="forum-tag status">
+                                            Sesi Sedang Berjalan 🏃‍♀️
                                         </div>
-                                    </a>
-                                <?php } ?>
-                                <?php if($forum['status_forum'] == 'OPEN') { ?>
-                                    <div class="forum-tag status">
-                                        Sesi Sedang Berjalan 🏃‍♀️
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="forum-tag closed">
-                                        Sesi Berakhir 👋
-                                    </div>
-                                <?php } ?>
+                                    <?php } else { ?>
+                                        <div class="forum-tag closed">
+                                            Sesi Berakhir 👋
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            <div class="forum-desc">
+                            <?= $forum['deskripsi_forum']?>
+                            </div>
+                            <div class="created-at">
+                                Forum dibuat: <?= $forum['created_at']?>
                             </div>
                         </div>
-                        <div class="forum-desc">
-                        <?= $forum['deskripsi_forum']?>
-                        </div>
-                        <div class="created-at">
-                            Forum dibuat: <?= $forum['created_at']?>
-                        </div>
+                    <?php endwhile; ?>
+                <?php } else { ?>
+                    <div class="forum-card">
+                        <div class="forum-title no-forum">Tidak ada forum untuk saat ini</div>
+                        <div class="forum-desc">belum ada forum kelas yang dapat diikuti untuk saat ini, silahkan tunggu beberapa saat lagi atau hubungi pihak guru yang bersangkutan.</div>
                     </div>
-                <?php endwhile; ?>
+                <?php }; ?>
+                    
             </div>
         </div>
         <div class="rightside-bar">
             <div class="right-user-details">
                 <div class="user-jurusan-title"><?= $_SESSION['jurusan'] ?></div>
-                <div class="user-jurusan-subtitle"> > Otomatisasi Keuangan Perkantoran</div>
+                <?php if($_SESSION['jurusan'] == 'XIMM2') { ?>
+                    <div class="user-jurusan-subtitle"> > Multimedia</div>
+                <?php } ?>
                 <center>
                     <div class="right-avatar">
                         <div class="photo"></div>

@@ -73,9 +73,9 @@
             <div class="login-container">
                 <form method="post">
                     <div class="title">SMK PARAMARTA</div>
-                    <div class="subtitle">Learning Management System Online</div>
+                    <div class="subtitle">study from every where with e-learning</div>
                     <div class="input-container">
-                        <input type="number" name="username" placeholder="NISN/NIDN" autofocus required><br>
+                        <input type="number" name="username" placeholder="Username/NISN" autofocus required><br>
                         <input type="password" name="password" id="password" placeholder="PASSWORD">
                         <span class="material-symbols-outlined" id="lihatpassword" style="position: absolute; margin-top: 40px; margin-left: -45px; color: grey; cursor: pointer;" onclick='showPassword()'>visibility</span><p>
                         <input type="submit" name="login" value="LOGIN"><p>
